@@ -1,21 +1,24 @@
 ﻿/*
-** Job Arranger for ZABBIX
+** Job Arranger Manager
 ** Copyright (C) 2012 FitechForce, Inc. All Rights Reserved.
 ** Copyright (C) 2013 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.
 **
-** This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-** the Free Software Foundation; either version 2 of the License, or
-** (at your option) any later version.
 **
-** This program is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-** GNU General Public License for more details.
+** Licensed to the Apache Software Foundation (ASF) under one or more 
+** contributor license agreements. See the NOTICE file distributed with
+** this work for additional information regarding copyright ownership. 
+** The ASF licenses this file to you under the Apache License, Version 2.0
+** (the "License"); you may not use this file except in compliance with 
+** the License. You may obtain a copy of the License at
 **
-** You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+** http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+**
 **/
 using System;
 using System.Windows;
@@ -53,6 +56,12 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
 
         /// <summary>説明</summary>
         private string oldComment;
+
+        /// <summary>ジョブネットタイムアウト</summary>
+        private string oldJobnetTimeout;
+
+        /// <summary>ジョブネットタイムアウト実行タイプ</summary>
+        private int oldJobnetTimeoutRunType;
 
         /// <summary>DBアクセスインスタンス</summary>
         private DBConnect dbAccess = new DBConnect(LoginSetting.ConnectStr);
@@ -535,7 +544,9 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             // 情報エリアの情報が変更された場合 
             if (cbOpen.IsChecked != oldPublicFlg
                 || !(tbJobnetName.Text.Equals(oldJobnetName))
-                || !(tbComment.Text.Equals(oldComment)))
+                || !(tbComment.Text.Equals(oldComment))
+                || !(tbJobnetTimeout.Text.Equals(oldJobnetTimeout))
+                || !(combJobNetRunType.SelectedIndex == oldJobnetTimeoutRunType))
                 return true;
 
             // ジョブフローが変更された場合 
@@ -1197,6 +1208,12 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             // 説明 
             rowsJobnet[0]["memo"] = tbComment.Text;
 
+            // ジョブネットタイムアウト
+            rowsJobnet[0]["jobnet_timeout"] = tbJobnetTimeout.Text;
+
+            //ジョブネットタイムアウト実行タイプ
+            rowsJobnet[0]["timeout_run_type"] = combJobNetRunType.SelectedIndex;
+
             //added by YAMA 2014/04/22
             // ジョブネットの多重起動の有無
             rowsJobnet[0]["multiple_start_up"] = combMultipleStart.SelectedValue;
@@ -1382,6 +1399,20 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             rowsJobnet[0]["jobnet_name"] = tbJobnetName.Text;
             // 説明 
             rowsJobnet[0]["memo"] = tbComment.Text;
+            // ジョブネットタイムアウト
+            // タイムアウト警告 
+            if (!CheckUtil.IsNullOrEmpty(tbJobnetTimeout.Text))
+            {
+                rowsJobnet[0]["jobnet_timeout"] = tbJobnetTimeout.Text;
+            }
+            else
+            {
+                rowsJobnet[0]["jobnet_timeout"] = 0;
+            }
+
+            //ジョブネットタイムアウト実行タイプ
+            rowsJobnet[0]["timeout_run_type"] = combJobNetRunType.SelectedIndex;
+
             // 全てのバージョンの公開フラグの更新 
             int publicFlg = 0;
             if (cbOpen.IsChecked == true)
@@ -1562,6 +1593,8 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
 
             tbJobnetName.IsEnabled = false;
             tbComment.IsEnabled = false;
+            tbJobnetTimeout.IsEnabled = false;
+            combJobNetRunType.IsEnabled = false;
             btnRegist.IsEnabled = false;
             container.sampleContainer.IsEnabled = false;
             container.cnsDesignerContainer.ContextMenu.Visibility = System.Windows.Visibility.Hidden;
@@ -1654,6 +1687,22 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
 
             // 説明 
             tbComment.Text = oldComment =Convert.ToString(row["memo"]);
+
+            // ジョブネットタイムアウト 
+            tbJobnetTimeout.Text = oldJobnetTimeout = Convert.ToString(row["jobnet_timeout"]);
+
+            // ジョブネットタイムアウト実行タイプ
+            String runType = Convert.ToString(row["timeout_run_type"]);
+            if ("".Equals(runType))
+            {
+                combJobNetRunType.SelectedIndex = oldJobnetTimeoutRunType = 0;
+            }
+            else
+            {
+                combJobNetRunType.SelectedIndex = oldJobnetTimeoutRunType = Convert.ToInt32(runType);
+
+            }
+
             //ユーザー名
             if (_editType == Consts.EditType.CopyNew)
             {
@@ -1724,6 +1773,16 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             {
                 CommonDialog.ShowErrorDialog(Consts.ERROR_COMMON_025,
                     new string[] { Properties.Resources.err_message_memo });
+                return false;
+            }
+
+            //TimeoutCheck(1-9999)
+
+            string timeOut = tbJobnetTimeout.Text.Trim();
+            if (!CheckUtil.IsHankakuNum(timeOut))
+            {
+                CommonDialog.ShowErrorDialog(Consts.ERROR_COMMON_007,
+                    new string[] { Properties.Resources.memo_label_jobnet_timeout });
                 return false;
             }
 

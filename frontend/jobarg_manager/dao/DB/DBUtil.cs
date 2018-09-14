@@ -1,21 +1,24 @@
 ﻿/*
-** Job Arranger for ZABBIX
+** Job Arranger Manager
 ** Copyright (C) 2012 FitechForce, Inc. All Rights Reserved.
 ** Copyright (C) 2013 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.
 **
-** This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-** the Free Software Foundation; either version 2 of the License, or
-** (at your option) any later version.
 **
-** This program is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-** GNU General Public License for more details.
+** Licensed to the Apache Software Foundation (ASF) under one or more 
+** contributor license agreements. See the NOTICE file distributed with
+** this work for additional information regarding copyright ownership. 
+** The ASF licenses this file to you under the Apache License, Version 2.0
+** (the "License"); you may not use this file except in compliance with 
+** the License. You may obtain a copy of the License at
 **
-** You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+** http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+**
 **/
 using System;
 using System.Collections.Generic;
@@ -1071,13 +1074,13 @@ namespace jp.co.ftf.jobcontroller.DAO
                 {
                     if (i == 0)
                     {
-                        sqlCalendar[i] = "select distinct A.* from " + calendarTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                        sqlCalendar[i] = "select distinct A.* from " + calendarTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                     else
                     {
                         sqlCalendar[i] = "select distinct B.* from " + calendarTableName + " AS B," + EXPORT_CALENDAR_TABLES[0] + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 "
                                                 + "where A." + idColumnName + "=B." + idColumnName + " and A.update_date=B.update_date and "
-                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                 }
                 db.AddSelectBatch(sqlCalendar[i], calendarTableName);
@@ -1095,13 +1098,13 @@ namespace jp.co.ftf.jobcontroller.DAO
                 {
                     if (i == 0)
                     {
-                        sqlFilter[i] = "select distinct A.* from " + filterTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                        sqlFilter[i] = "select distinct A.* from " + filterTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                     else
                     {
                         sqlFilter[i] = "select distinct B.* from " + filterTableName + " AS B," + EXPORT_FILTER_TABLES[0] + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 "
                                                 + "where A." + idColumnName + "=B." + idColumnName + " and A.update_date=B.update_date and "
-                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                 }
                 db.AddSelectBatch(sqlFilter[i], filterTableName);
@@ -1118,13 +1121,13 @@ namespace jp.co.ftf.jobcontroller.DAO
                 {
                     if (i == 0)
                     {
-                        sqlSchedule[i] = "select distinct A.* from " + scheduleTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                        sqlSchedule[i] = "select distinct A.* from " + scheduleTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                     else
                     {
                         sqlSchedule[i] = "select distinct B.* from " + scheduleTableName + " AS B," + EXPORT_SCHEDULE_TABLES[0] + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 "
                                                 + "where A." + idColumnName + "=B." + idColumnName + " and A.update_date=B.update_date and "
-                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                 }
                 db.AddSelectBatch(sqlSchedule[i], scheduleTableName);
@@ -1141,13 +1144,13 @@ namespace jp.co.ftf.jobcontroller.DAO
                 {
                     if (i == 0)
                     {
-                        sqlJobnet[i] = "select distinct A.* from " + jobnetTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                        sqlJobnet[i] = "select distinct A.* from " + jobnetTableName + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 where A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                     else
                     {
                         sqlJobnet[i] = "select distinct B.* from " + jobnetTableName + " AS B," + EXPORT_JOBNET_TABLES[0] + " AS A,users AS U,users_groups AS UG1, users_groups AS UG2 "
                                                 + "where A." + idColumnName + "=B." + idColumnName + " and A.update_date=B.update_date and "
-                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid";
+                                                + "A.user_name=U.alias and UG1.userid=U.userid and UG2.userid=" + LoginSetting.UserID + " and UG1.usrgrpid=UG2.usrgrpid ORDER BY 1,2";
                     }
                 }
                 db.AddSelectBatch(sqlJobnet[i], jobnetTableName);
@@ -1193,7 +1196,7 @@ namespace jp.co.ftf.jobcontroller.DAO
             int i = 0;
             foreach (String tableName in tables)
             {
-                sql[i] = "select * from " + tables[i] + " where " + idColumnName + "='" + objectId + "'";
+                sql[i] = "select * from " + tables[i] + " where " + idColumnName + "='" + objectId + "' ORDER BY 1,2";
                 db.AddSelectBatch(sql[i], tableName);
                 i++;
             }
@@ -1344,6 +1347,14 @@ namespace jp.co.ftf.jobcontroller.DAO
             DBConnect db = new DBConnect(LoginSetting.ConnectStr);
             db.CreateSqlConnect();
             db.BeginTransaction();
+
+            //3.2 release START
+            if (LoginSetting.DBType == 0)
+            {
+                db.ExecuteQuery("SET sql_mode=''"); 
+            }
+            //END
+
             String insertSql = "";
             foreach (DataTable dt in ds.Tables)
             {
@@ -1371,10 +1382,7 @@ namespace jp.co.ftf.jobcontroller.DAO
                         {
                             if (!dc.ColumnName.Equals("valid_flag"))
                             {
-                                /* added by YAMA 2014/12/12    V2.1.0 No33 対応(「created_date」の除外) */
-                                //sqlParams.Add(new ComSqlParam(DbType.String, "@" + dc.ColumnName, dr[dc.ColumnName]));
-                                if (!dc.ColumnName.Equals("created_date"))
-                                    sqlParams.Add(new ComSqlParam(DbType.String, "@" + dc.ColumnName, dr[dc.ColumnName]));
+                                sqlParams.Add(new ComSqlParam(DbType.String, "@" + dc.ColumnName, dr[dc.ColumnName]));
                             }
                             else
                             {
@@ -1441,32 +1449,18 @@ namespace jp.co.ftf.jobcontroller.DAO
             insertSql = "insert into " + dt.TableName + " (";
             foreach (DataColumn dc in dt.Columns)
             {
-                /* added by YAMA 2014/12/12    V2.1.0 No33 対応(「created_date」の除外) */
-                //if (collumnCount > 0) insertSql = insertSql + ",";
-                //insertSql = insertSql + dc.ColumnName;
-                //collumnCount++;
-                if (!dc.ColumnName.Equals("created_date"))
-                {
-                    if (collumnCount > 0) insertSql = insertSql + ",";
-                    insertSql = insertSql + dc.ColumnName;
-                    collumnCount++;
-                }
+                if (collumnCount > 0) insertSql = insertSql + ",";
+                insertSql = insertSql + dc.ColumnName;
+                collumnCount++;
             }
 
             insertSql = insertSql + ") values (";
             collumnCount = 0;
             foreach (DataColumn dc in dt.Columns)
             {
-                /* added by YAMA 2014/12/12    V2.1.0 No33 対応(「created_date」の除外) */
-                //if (collumnCount > 0) insertSql = insertSql + ",";
-                //insertSql = insertSql + "?";
-                //collumnCount++;
-                if (!dc.ColumnName.Equals("created_date"))
-                {
-                    if (collumnCount > 0) insertSql = insertSql + ",";
-                    insertSql = insertSql + "?";
-                    collumnCount++;
-                }
+                if (collumnCount > 0) insertSql = insertSql + ",";
+                insertSql = insertSql + "?";
+                collumnCount++;
             }
             insertSql = insertSql + ")";
             return insertSql;

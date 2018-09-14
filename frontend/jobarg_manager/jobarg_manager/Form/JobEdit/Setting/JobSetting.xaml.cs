@@ -1,21 +1,24 @@
 ﻿/*
-** Job Arranger for ZABBIX
+** Job Arranger Manager
 ** Copyright (C) 2012 FitechForce, Inc. All Rights Reserved.
 ** Copyright (C) 2013 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.
 **
-** This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-** the Free Software Foundation; either version 2 of the License, or
-** (at your option) any later version.
 **
-** This program is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-** GNU General Public License for more details.
+** Licensed to the Apache Software Foundation (ASF) under one or more 
+** contributor license agreements. See the NOTICE file distributed with
+** this work for additional information regarding copyright ownership. 
+** The ASF licenses this file to you under the Apache License, Version 2.0
+** (the "License"); you may not use this file except in compliance with 
+** the License. You may obtain a copy of the License at
 **
-** You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+** http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+**
 **/
 using System.Windows;
 using System.Data;
@@ -404,6 +407,7 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             btnAdd.IsEnabled = false;
             btnDel.IsEnabled = false;
             txtTimeOut.IsEnabled = false;
+            combRunType.IsEnabled = false;
 
             //added by YAMA 2014/02/19
             cbForce.IsEnabled = false;
@@ -640,6 +644,16 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
 
                 // タイムアウト警告 
                 txtTimeOut.Text = Convert.ToString(rowIconJob[0]["timeout"]);
+
+                // タイムアウト実行タイプ
+                String runType = Convert.ToString(rowIconJob[0]["timeout_run_type"]);
+                if ("".Equals(runType))
+                {
+                    combRunType.SelectedIndex = 0;
+                }else{
+                    combRunType.SelectedIndex = Convert.ToInt32(runType);
+                }
+                
 
                 //added by YAMA 2014/02/19
                 // 強制実行
@@ -1185,6 +1199,12 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
                 {
                     rowIconJob[0]["timeout"] = Convert.DBNull;
                 }
+                // タイムアウトの場合実行内容
+                // 0 警告のみ
+                // 1 job stop
+                // 2 job skip
+                rowIconJob[0]["timeout_run_type"] = combRunType.SelectedIndex;
+
                 // ジョブ停止コード 
                 rowIconJob[0]["stop_code"] = txtStopCode.Text;
 

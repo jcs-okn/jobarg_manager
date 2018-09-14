@@ -1,22 +1,25 @@
 ﻿<!--
 /*
-** Job Arranger for ZABBIX
+** Job Arranger Manager
 ** Copyright (C) 2012 FitechForce, Inc. All Rights Reserved.
 ** Copyright (C) 2013 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.
 **
-** This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-** the Free Software Foundation; either version 2 of the License, or
-** (at your option) any later version.
 **
-** This program is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-** GNU General Public License for more details.
+** Licensed to the Apache Software Foundation (ASF) under one or more 
+** contributor license agreements. See the NOTICE file distributed with
+** this work for additional information regarding copyright ownership. 
+** The ASF licenses this file to you under the Apache License, Version 2.0
+** (the "License"); you may not use this file except in compliance with 
+** the License. You may obtain a copy of the License at
 **
-** You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+** http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+**
 **/
 -->
     <Window x:Class="jp.co.ftf.jobcontroller.JobController.Form.JobEdit.JobSetting"
@@ -151,14 +154,19 @@
                 </Style>
             </ListBox.Resources>
         </ListBox>
-        <Label Grid.Row="8" Content="{x:Static src:Properties.Resources.timeout_label_text}" Height="23" Width="157" HorizontalAlignment="Left" 
+        <Label Grid.Row="9" Content="{x:Static src:Properties.Resources.timeout_label_text}" Height="23" Width="157" HorizontalAlignment="Left" 
                Margin="9,4,0,0" VerticalAlignment="Top" />
-        <TextBox Grid.Row="8" Name="txtTimeOut" Height="23" Width="40" HorizontalAlignment="Left" Margin="162,7,0,0" 
+        <TextBox Grid.Row="9" Name="txtTimeOut" Height="23" Width="40" HorizontalAlignment="Left" Margin="162,7,0,0" 
                  VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MaxLength="5" />
-        <Label Grid.Row="9" Content="{x:Static src:Properties.Resources.stop_code_label_text}" Height="23" Width="105" HorizontalAlignment="Left" 
+        <Label Grid.Row="8" Content="{x:Static src:Properties.Resources.stop_code_label_text}" Height="23" Width="105" HorizontalAlignment="Left" 
                Margin="9,5,0,0" VerticalAlignment="Top" />
-        <TextBox Grid.Row="9" Name="txtStopCode" Height="23" Width="72" HorizontalAlignment="Left" Margin="130,6,0,0" 
+        <TextBox Grid.Row="8" Name="txtStopCode" Height="23" Width="72" HorizontalAlignment="Left" Margin="130,6,0,0" 
                  VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MaxLength="32" />
+        <ComboBox Grid.Row="9" Name="combRunType" Height="23" Width="80" HorizontalAlignment="Left" 
+                  Margin="220,7,0,0" VerticalAlignment="Top" >
+            <ComboBoxItem Content="{x:Static src:Properties.Resources.timeout_run_type_label_text}"></ComboBoxItem>
+            <ComboBoxItem>job stop</ComboBoxItem>
+        </ComboBox>
         <CheckBox Grid.Row="8" Content="{x:Static src:Properties.Resources.force_label_text}" Height="13" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top" Name="cbForce" Width="79" />
         <CheckBox Grid.Row="8" Content="{x:Static src:Properties.Resources.continue_label_text}" Height="13" HorizontalAlignment="Left" Margin="306,9,0,0" VerticalAlignment="Top" Name="cbContinue" Width="79" />
         <Label Grid.Row="9" Content="{x:Static src:Properties.Resources.run_user_label_text}" Height="23" Width="82" HorizontalAlignment="Left" 

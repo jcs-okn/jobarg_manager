@@ -471,6 +471,9 @@
   <data name="memo_label_text" xml:space="preserve">
     <value>説明：</value>
   </data>
+  <data name="memo_label_jobnet_timeout" xml:space="preserve">
+    <value>タイムアウト警告(分)：</value>
+  </data>
   <data name="mon_day_checkbox_text" xml:space="preserve">
     <value>月曜日</value>
   </data>
@@ -483,7 +486,7 @@
   <data name="MSG_COMMON_003" xml:space="preserve">
     <value>Job Arranger for Zabbix
 
-Job Manager Version 3.0.0 (Rev:7065)
+Job Manager Version 3.1.0 (Rev:7200)
 
 Copyright (C) 2012-2013 FitechForce, Inc. All Rights Reserved. 
 Copyright (C) 2013-2015 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.</value>
@@ -903,6 +906,9 @@ Copyright (C) 2013-2015 Daiwa Institute of Research Business Innovation Ltd. All
   </data>
   <data name="timeout_label_text" xml:space="preserve">
     <value>タイムアウト警告(分)：</value>
+  </data>
+  <data name="timeout_run_type_label_text" xml:space="preserve">
+    <value>警告のみ</value>
   </data>
   <data name="value_col_head_text" xml:space="preserve">
     <value>値</value>

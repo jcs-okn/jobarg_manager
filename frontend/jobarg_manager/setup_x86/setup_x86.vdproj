@@ -433,7 +433,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MonthCalendarControl, Version=1.0.5904.27479, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MonthCalendarControl, Version=1.0.5948.24467, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_182D6487D8E7139F4C0529BEA129B2E2"
@@ -597,7 +597,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MonthCalendarControl, Version=1.0.5899.27904, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MonthCalendarControl, Version=1.0.5476.27245, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_79E1BC7532645FFB172535B8A70EE218"
@@ -818,7 +818,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Job Arranger Manager"
         "ProductCode" = "8:{8B09B21A-9541-49F3-9E88-ABC9C7A67FC8}"
-        "PackageCode" = "8:{D2AA5529-F1DD-4CCA-815B-F824D4CACD6C}"
+        "PackageCode" = "8:{F57B0FCF-368A-4BEC-934C-A06DAA02995D}"
         "UpgradeCode" = "8:{C92DCD08-3B64-47D8-868C-CCF7BB2EC773}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

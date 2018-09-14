@@ -252,7 +252,7 @@
     <value>선택된 JOBNET ID가 다른 유져에 의해 삭제되었습니다.</value>
   </data>
   <data name="ERROR_JOBEDIT_003" xml:space="preserve">
-    <value>지정된 JOB ID가 자신의 JOBNET, 또는 자신의 JOBNET에서 불려지는 JOBNET에 등록되어 있지 않습니다.</value>+
+    <value>+</value>
   </data>
   <data name="ERROR_JOBEDIT_004" xml:space="preserve">
     <value>하나의 JOB 플로우중에서 한개만이 시작 아이콘이 등록이 가능합니다.</value>
@@ -277,7 +277,6 @@
     <value>같은 달력ID로 이미 등록되어 있습니다.</value>
   </data>
   <data name="err_message_alredy_exist_jobnet" xml:space="preserve">
-    <value>同一ジョブネットIDのジョブネットは既に存在します。</value>
     <value>같은 JOBNET ID로 이미 등록되어 있습니다.</value>
   </data>
   <data name="err_message_alredy_exist_schedule" xml:space="preserve">
@@ -311,7 +310,6 @@
     <value>다른곳에서 사용하고 있어 삭제가 불가능 합니다.</value>
   </data>
   <data name="err_message_jobcon_name" xml:space="preserve">
-    <value>ジョブコントローラ名</value>
     <value>JOB CON 이름</value>
   </data>
   <data name="err_message_jobnet_id" xml:space="preserve">
@@ -345,7 +343,6 @@
     <value>Export파일의 출력할곳을 지정해 주세요.</value>
   </data>
   <data name="export_screen_name" xml:space="preserve">
-    <value>エクスポート画面</value>
     <value>Export 화면</value>
   </data>
   <data name="file_menu_text" xml:space="preserve">
@@ -409,7 +406,6 @@
     <value>JOBNET</value>
   </data>
   <data name="jobnet_situation_menu_text" xml:space="preserve">
-    <value>運用状況ジョブネット一覧(_O)</value>
     <value>운영 상황 JOBNET 목록(_O)</value>
   </data>
   <data name="job_control_tab_text" xml:space="preserve">
@@ -440,7 +436,6 @@
     <value>유져 또는 패스워드가 정확하지 않습니다.</value>
   </data>
   <data name="login_screen_db_group_label" xml:space="preserve">
-    <value>ジョブコントローラ接続先DB情報</value>
     <value>JOB CON접속할 DB정보</value>
   </data>
   <data name="login_screen_db_pass_label" xml:space="preserve">
@@ -476,6 +471,9 @@ JOB CON에 Login하기 위해서는, JOB CON이름, 유져, 패스워드를
   <data name="memo_label_text" xml:space="preserve">
     <value>설명：</value>
   </data>
+  <data name="memo_label_jobnet_timeout" xml:space="preserve">
+    <value>Timeout 경고(분)：</value>
+  </data>
   <data name="mon_day_checkbox_text" xml:space="preserve">
     <value>월요일</value>
   </data>
@@ -486,9 +484,9 @@ JOB CON에 Login하기 위해서는, JOB CON이름, 유져, 패스워드를
     <value>데이터를 저장하시겠습니까?</value>
   </data>
   <data name="MSG_COMMON_003" xml:space="preserve">
-        <value>Job Arranger for Zabbix
+    <value>Job Arranger for Zabbix
 
-Job Manager Version 3.0.0 (Rev:7065)
+Job Manager Version 3.1.0 (Rev:7200)
 
 Copyright (C) 2012-2013 FitechForce, Inc. All Rights Reserved. 
 Copyright (C) 2013-2015 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.</value>
@@ -1744,7 +1742,7 @@ Copyright (C) 2013-2015 Daiwa Institute of Research Business Innovation Ltd. All
     <value>Prompt 문자열</value>
   </data>
   <data name="agentless_timeout_label_text" xml:space="preserve">
-    <value>TimeOUt 경고(분)：</value>
+    <value>TimeOut 경고(분)：</value>
   </data>
   <data name="err_message_session_id" xml:space="preserve">
     <value>세션 ID</value>
@@ -2129,5 +2127,8 @@ JOB 콘트롤러 변수은 $기호부터 시작해주세요.</value>
   </data>
   <data name="ERROR_COMMON_029" xml:space="preserve">
     <value>권한이 없습니다. {0}</value>
+  </data>
+  <data name="timeout_run_type_label_text" xml:space="preserve">
+    <value>경고연락</value>
   </data>
 </root>

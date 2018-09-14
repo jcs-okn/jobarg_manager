@@ -1,22 +1,25 @@
 ﻿<!--
 /*
-** Job Arranger for ZABBIX
+** Job Arranger Manager
 ** Copyright (C) 2012 FitechForce, Inc. All Rights Reserved.
 ** Copyright (C) 2013 Daiwa Institute of Research Business Innovation Ltd. All Rights Reserved.
 **
-** This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-** the Free Software Foundation; either version 2 of the License, or
-** (at your option) any later version.
 **
-** This program is distributed in the hope that it will be useful,
-** but WITHOUT ANY WARRANTY; without even the implied warranty of
-** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-** GNU General Public License for more details.
+** Licensed to the Apache Software Foundation (ASF) under one or more 
+** contributor license agreements. See the NOTICE file distributed with
+** this work for additional information regarding copyright ownership. 
+** The ASF licenses this file to you under the Apache License, Version 2.0
+** (the "License"); you may not use this file except in compliance with 
+** the License. You may obtain a copy of the License at
 **
-** You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+** http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+**
 **/
 -->
 <src:EditBaseUserControl x:Class="jp.co.ftf.jobcontroller.JobController.Form.JobEdit.JobEdit"
@@ -54,9 +57,24 @@
         <Label Content="{x:Static src:Properties.Resources.update_date_label_text}" Height="23" HorizontalAlignment="Left" Margin="580,30,0,0" VerticalAlignment="Top" />
         <Label Content="" Height="23" Width="130" HorizontalAlignment="Left" Margin="655,30,0,0" Name="lblUpdDate"
                VerticalAlignment="Top" />
+        <!-- ORG
         <Label Content="{x:Static src:Properties.Resources.memo_label_text}" Height="23" HorizontalAlignment="Left" Margin="0,63,0,0" VerticalAlignment="Top" />
         <TextBox Height="Auto" Width="700" Margin="96,63,0,0" HorizontalAlignment="Left" Name="tbComment" VerticalAlignment="Top" VerticalContentAlignment="Center" 
                  MaxLength="100" TextWrapping="WrapWithOverflow"/>
+         -->
+        <!--Park.iggy ADD 3.2 release -->
+        <Label Content="{x:Static src:Properties.Resources.memo_label_text}" Height="23" HorizontalAlignment="Left" Margin="0,63,0,0" VerticalAlignment="Top" />
+        <TextBox Height="Auto" Width="500" Margin="96,63,0,0" HorizontalAlignment="Left" Name="tbComment" VerticalAlignment="Top" VerticalContentAlignment="Center" 
+                 MaxLength="100" TextWrapping="WrapWithOverflow"/>
+        <Label Content="{x:Static src:Properties.Resources.memo_label_jobnet_timeout}" Height="23" HorizontalAlignment="Left" Margin="600,63,0,0" VerticalAlignment="Top" />
+        <TextBox Height="Auto" Width="60" HorizontalAlignment="Left" Margin="725,63,0,0" MaxLength="5" Text="0"
+                 Name="tbJobnetTimeout" VerticalAlignment="Top" VerticalContentAlignment="Center" TextWrapping="WrapWithOverflow"/>
+        <ComboBox Name="combJobNetRunType" Height="23" Width="80" HorizontalAlignment="Left" 
+                  Margin="790,63,0,0" VerticalAlignment="Top" >
+            <ComboBoxItem IsSelected="True" Content="{x:Static src:Properties.Resources.timeout_run_type_label_text}"></ComboBoxItem>
+            <ComboBoxItem>jobnet stop</ComboBoxItem>
+        </ComboBox>
+        <!--Park.iggy ADD END 3.2release -->
         <design:Container x:Name="container" Grid.Row="1"></design:Container>
         <!--  added by YAMA 2014/11/10    JAMのGUIの名称の変更
         <Button Grid.Row="2" Content="{x:Static src:Properties.Resources.regist_button_text}" Height="28" Name="btnRegist" Width="75" Margin="0,6,120,6" 

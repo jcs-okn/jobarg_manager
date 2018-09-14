@@ -51,14 +51,14 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobEdit
             "on users_groups.usrgrpid = usrgrp.usrgrpid inner join rights on usrgrp.usrgrpid = rights.groupid " +
             "inner join hosts_groups on rights.id = hosts_groups.groupid inner join hosts on " +
             "hosts_groups.hostid = hosts.hostid " +
-            "where users.alias = ? and rights.permission <> '0' and (hosts.status=0 or hosts.status=1) " +
+            "where users.alias = ? and rights.permission <> '0' and hosts.status in (0,1) and hosts.flags = 0 " +
             //added by YAMA 2014/08/08    （ホスト名でソート）
             //"order by hosts.hostid ASC";
             "order by hosts.host ASC";
 
         //added by YAMA 2014/08/08    （ホスト名でソート）
         //private string _selectForHostSqlSuper = "select hostid, host from hosts where status=0 or status=1 order by hostid ASC";
-        private string _selectForHostSqlSuper = "select hostid, host from hosts where status=0 or status=1 order by host ASC";
+        private string _selectForHostSqlSuper = "select hostid, host from hosts where status in (0,1) and flags = 0 order by host ASC";
 
         #endregion
 

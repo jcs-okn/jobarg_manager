@@ -575,7 +575,7 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobManager
         }
 
         //*******************************************************************
-        /// <>強制停止をクリック</>
+        /// <>再実行をクリック</>
         /// <param name="sender">源</param>
         /// <param name="e">マウスイベント</param>
         //*******************************************************************
@@ -1125,8 +1125,8 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobManager
             //added by YAMA 2014/05/30 エージェントレスアイコンも追加
             //    if (!(item is Job || item is ExtJob || item is FCopy || item is Reboot || item is Release || item is Agentless))
             //added by YAMA 2014/06/26 ファイル待合わせアイコンも追加
-            if (!(item is Job || item is ExtJob || item is FCopy || item is Reboot || item is Release || item is Agentless || item is FWait))
-
+            if (!(item is Job || item is ExtJob || item is FCopy || item is Reboot || item is Release || item is Agentless
+                    || item is FWait || item is If || item is Cooperation))
                 return false;
 
             //ステータスが実行エラー以外の場合利用不可 
@@ -1296,6 +1296,7 @@ namespace jp.co.ftf.jobcontroller.JobController.Form.JobManager
             {
                 row["status"] = (int)RunJobStatusType.Prepare;
                 row["method_flag"] = (int)RunJobMethodType.RERUN;
+                row["timeout_flag"] = (int)RunJobTimeoutType.NORMAL;
                 _dbAccess.ExecuteNonQuery(dt, _runJobControlDAO);
 
                 // added by YAMA 2014/11/05    拡張ジョブアイコンの再実行

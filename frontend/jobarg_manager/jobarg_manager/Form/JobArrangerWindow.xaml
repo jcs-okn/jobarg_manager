@@ -155,8 +155,8 @@
                    Height="25" Foreground="White" />
             <TextBlock  Name="productName" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,3,10" 
                    Width="400" Height="43" Foreground="White" TextWrapping="Wrap" >
-                <Hyperlink NavigateUri="http://xn--yck0c5b3804be7h.fitechforce.com/" RequestNavigate="Hyperlink_SendClick" Foreground="White">
-                    Job Arranger 3.2.0
+                <Hyperlink NavigateUri="https://www.jobarranger.info/jaz/top.html" RequestNavigate="Hyperlink_SendClick" Foreground="White">
+                    Job Arranger 3.4.0
                 </Hyperlink>
                  
             </TextBlock>
